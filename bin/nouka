@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export HOSTNAME=$(hostname)
+
+NOUKA_HOME=$(dirname $0)/../
+
+cd ${NOUKA_HOME}
+bin/nouka.py $@
+

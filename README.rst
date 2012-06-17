@@ -1,0 +1,122 @@
+========================
+NOUKA data collector
+========================
+
+Requirement
+========================
+
+client
+-------
+- python 2.4+
+
+server
+-------
+- fluentd or td-agent
+  http://fluentd.org/
+- fluent-plugin-mongo
+- fluent-plugin-http-enhanced
+  https://github.com/parolkar/fluent-plugin-http-enhanced
+
+
+.. code-block:: bash
+
+ gem install fluent-plugin-http-enhanced
+
+
+Install
+========================
+
+.. code-block:: bash
+
+ hg clone ...(writing)
+
+
+Server Configuration
+========================
+
+.. code-block:: text
+
+ <source>
+   type httpenhanced
+   port 1981
+   full_query_string_record true
+   respond_with_empty_img false
+   default_tag naya
+ </source>
+ 
+ <match naya.**>
+     type mongo
+     database nouka
+     collection naya
+     host localhost
+     port 27017
+     ignore_invalid_record true
+     buffer_chunk_limit 128k
+     flush_interval 1s
+ </match>
+
+Execution
+========================
+only execute `<NOUKA_HOME>/bin/nouka`
+
+if you need help, 
+execute `<NOUKA_HOME>/bin/nouka --help`
+
+Data Format
+========================
+
+.. code-block:: json
+
+ {
+     'group_name'   : '<group_name's value in config file>',
+     'host_name'    : '<env HOSTNAME>',
+     'command_name' : '<command name in config file. named command_*>',
+     'command_line' : '<command line(value) in config file>',
+     'output'       : '<output of command line>',
+     'return_code'  : '<return code of command line>',
+     'visible'      : 'True',
+     'execute_at'   : '<execute date as unixtime>',
+ }
+
+
+Examples
+========================
+To get latest results of group_name=system_A
+
+.. code-block:: json
+
+ # step1. find latest result date
+ > db.nengu.distinct('execute_at',{'group_name':'system_A'})
+ [ "1339597836", "1339597926", "1339597944", "1339597953" ]
+
+ # step2. get results
+ > db.nengu.find({'group_name':'system_A','execute_at':'1339597953'})
+
+Development
+========================
+
+.. code-block:: bash
+
+ virtualenv --no-site-packages --python=python2.4 venv
+ # or 
+ /usr/local/Cellar/python24/2.4.*/bin/virtualenv --no-site-packages --python=python2.4 venv
+
+
+
+Note
+========================
+If you use MacOSX, install python2.4 with homebrew.
+
+.. code-block:: bash
+
+ brew tap homebrew/versions
+ brew install homebrew/versions/python24
+ curl http://peak.telecommunity.com/dist/ez_setup.py|python2.4
+ /usr/local/Cellar/python24/2.4.6/bin/easy_install pip
+ /usr/local/Cellar/python24/2.4.6/bin/pip install virtualenv
+ 
+
+
+
+
+
