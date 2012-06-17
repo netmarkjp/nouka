@@ -41,10 +41,10 @@ fleutd.conf::
    port 1981
    full_query_string_record true
    respond_with_empty_img false
-   default_tag naya
+   default_tag nouka
  </source>
  
- <match naya.**>
+ <match nouka.**>
      type mongo
      database nouka
      collection naya
