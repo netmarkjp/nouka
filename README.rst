@@ -18,7 +18,7 @@ server
   https://github.com/parolkar/fluent-plugin-http-enhanced
 
 
-.. code-block:: bash
+shell::
 
  gem install fluent-plugin-http-enhanced
 
@@ -26,7 +26,7 @@ server
 Install
 ========================
 
-.. code-block:: bash
+shell::
 
  hg clone ...(writing)
 
@@ -34,7 +34,7 @@ Install
 Server Configuration
 ========================
 
-.. code-block:: text
+fleutd.conf::
 
  <source>
    type httpenhanced
@@ -65,7 +65,7 @@ execute `<NOUKA_HOME>/bin/nouka --help`
 Data Format
 ========================
 
-.. code-block:: json
+json::
 
  {
      'group_name'   : '<group_name's value in config file>',
@@ -83,7 +83,7 @@ Examples
 ========================
 To get latest results of group_name=system_A
 
-.. code-block:: json
+mongo::
 
  # step1. find latest result date
  > db.nengu.distinct('execute_at',{'group_name':'system_A'})
@@ -95,19 +95,22 @@ To get latest results of group_name=system_A
 Development
 ========================
 
-.. code-block:: bash
+shell::
 
  virtualenv --no-site-packages --python=python2.4 venv
  # or 
  /usr/local/Cellar/python24/2.4.*/bin/virtualenv --no-site-packages --python=python2.4 venv
 
 
+See Also
+========================
+related project is yaoya data convertor https://bitbucket.org/netmarkjp/yaoya
 
 Note
 ========================
 If you use MacOSX, install python2.4 with homebrew.
 
-.. code-block:: bash
+shell::
 
  brew tap homebrew/versions
  brew install homebrew/versions/python24
@@ -115,8 +118,4 @@ If you use MacOSX, install python2.4 with homebrew.
  /usr/local/Cellar/python24/2.4.6/bin/easy_install pip
  /usr/local/Cellar/python24/2.4.6/bin/pip install virtualenv
  
-
-
-
-
 
