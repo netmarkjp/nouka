@@ -78,6 +78,9 @@ json::
      'execute_at'   : '<execute date as unixtime>',
  }
 
+- unique key of the host is `group_name` and `host_name`.
+- unique key of the command execution is `group_name` and `host_name` and `command_name` and `execute_at`.
+
 
 Examples
 ========================
