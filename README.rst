@@ -2,6 +2,19 @@
 NOUKA data collector
 ========================
 
+Overview
+========================
+NOUKA is client tool of inventory management system.
+
+NOUKA enable ...
+
+- AUTOMATIC update
+- PERIODIC update
+
+and NOUKA focus to Linux machines.
+
+http://www.slideshare.net/toshiak_netmark/nouka-inventry-manager
+
 Requirement
 ========================
 
